@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Snacks and sweets carry the most sugar",
+    "subtitle": "Sugar per 100 g, by food type. Box = middle half of products. Line = median.",
+    "anchor": "start"
+  },
+  "width": 520,
+  "height": 380,
+  "data": {
+    "url": "data/openhsr_clean.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "product_group",
+      "type": "nominal",
+      "title": "Food type",
+      "sort": [
+        "Snacks & sweets",
+        "Other",
+        "Bakery",
+        "Breakfast cereals",
+        "Drinks",
+        "Dairy & eggs",
+        "Sauces & other processed",
+        "Vegetables & canned",
+        "Frozen foods",
+        "Meat",
+        "Pasta, rice & grains"
+      ],
+      "axis": {
+        "labelLimit": 220
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "boxplot",
+        "extent": "min-max",
+        "size": 20,
+        "color": "#7a7a7a",
+        "median": {
+          "color": "black",
+          "size": 20
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "sugars_g_per_100g",
+          "type": "quantitative",
+          "title": "Sugars (g per 100 g)"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "product_group": "Snacks & sweets",
+            "t": "Median: 39.7 g"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#222"
+      },
+      "encoding": {
+        "x": {
+          "datum": 68,
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "product_group": "Meat",
+            "t": "Meat, pasta and rice: almost no sugar"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontStyle": "italic",
+        "fontSize": 12,
+        "color": "#444"
+      },
+      "encoding": {
+        "x": {
+          "datum": 9,
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "data/openhsr_clean.csv"
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Sweeter products tend to score fewer stars",
+        "subtitle": "Drag a box on the chart. The bars below show what you selected.",
+        "anchor": "start"
+      },
+      "width": 520,
+      "height": 280,
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "brush",
+              "select": {
+                "type": "interval"
+              }
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 70,
+            "stroke": "#444",
+            "strokeWidth": 0.6
+          },
+          "encoding": {
+            "x": {
+              "field": "sugars_g_per_100g",
+              "type": "quantitative",
+              "title": "Sugars (g per 100 g)"
+            },
+            "y": {
+              "field": "nutrient_energy_kj",
+              "type": "quantitative",
+              "title": "Energy (kJ per 100 g)"
+            },
+            "color": {
+              "field": "hsr_band",
+              "type": "ordinal",
+              "title": "Health Star Rating",
+              "sort": [
+                "Low (0.5-1.5)",
+                "Middle (2-3)",
+                "High (3.5-5)"
+              ],
+              "scale": {
+                "domain": [
+                  "Low (0.5-1.5)",
+                  "Middle (2-3)",
+                  "High (3.5-5)"
+                ],
+                "range": [
+                  "#c7e9c0",
+                  "#74c476",
+                  "#00682b"
+                ]
+              },
+              "legend": {
+                "orient": "right"
+              }
+            },
+            "opacity": {
+              "condition": {
+                "param": "brush",
+                "value": 0.95
+              },
+              "value": 0.25
+            },
+            "tooltip": [
+              {
+                "field": "product_name",
+                "title": "Product"
+              },
+              {
+                "field": "product_group",
+                "title": "Food type"
+              },
+              {
+                "field": "sugars_g_per_100g",
+                "title": "Sugars (g)"
+              },
+              {
+                "field": "nutrient_energy_kj",
+                "title": "Energy (kJ)"
+              },
+              {
+                "field": "HSR",
+                "title": "Stars"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "x": 38,
+                "y": 3250,
+                "t": [
+                  "Of 40 products with 25 g+ sugar,",
+                  "39 score 3 stars or fewer"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "color": "#333"
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Selected products by food type",
+        "anchor": "start"
+      },
+      "width": 520,
+      "height": 200,
+      "transform": [
+        {
+          "filter": {
+            "param": "brush"
+          }
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#7a7a7a"
+      },
+      "encoding": {
+        "y": {
+          "field": "product_group",
+          "type": "nominal",
+          "title": "Food type",
+          "sort": "-x",
+          "axis": {
+            "labelLimit": 220
+          }
+        },
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Number of products"
+        }
+      }
+    }
+  ]
+}

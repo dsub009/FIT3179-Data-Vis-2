@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's really in the packet?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <header>
+    <h1>What's really in the packet?</h1>
+    <p class="subtitle">Health, diet and packaged food in Australia</p>
+    <p class="byline">By Dhakshini Subramanian · Student ID 35097698 · October 2026</p>
+  </header>
+
+  <main>
+    <section>
+    <h2>1. How are Australians eating?</h2>
+
+    <div class="story-row">
+    <div>
+      <h3>Two in three adults carry extra weight</h3>
+      <p><span class="c-health">65.8%</span> of adults are overweight or obese.</p>
+      <p>Tasmania is highest at <span class="c-health">70.5%</span>. New South Wales is lowest at <span class="c-health">63.1%</span>.</p>
+    </div>
+    <div>
+      <div id="choropleth_map"></div>
+      <p class="source">Source: ABS National Health Survey 2022.</p>
+    </div>
+  </div>
+
+      <p>Fruit and vegetables tell a similar story. More than half of adults (55.8%) miss the fruit guideline, and 93.5% miss the vegetable guideline.</p>
+      <div id="tile_map"></div>
+      <p class="source">Source: ABS National Health Survey 2022.</p>
+    </section>
+
+    <section>
+      <h2>5. Where does it come from?</h2>
+      <p>Write two sentences about the biggest sources, using your real numbers.</p>
+      <div id="symbol_map"></div>
+      <p class="source">Source: DFAT merchandise trade statistical pivot tables (ABS International Trade in Goods).</p>
+    </section>
+
+    <section>
+      <h2>2. What's on the shelf?</h2>
+      <p>Snacks and sweets are the clear outlier. Half of them have more than 39.7 g of sugar per 100 g, while pasta, rice and grains have a median of just 0.6 g.</p>
+      <div id="boxplot"></div>
+
+      <p>Star ratings follow the same pattern. 11 of the 18 snacks and sweets earn only half a star, while all 20 pasta, rice and grain products earn 3 stars or more.</p>
+      <div id="heatmap"></div>
+      <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025).</p>
+
+      <p>Sweeter products tend to carry more energy, and many of the sweetest earn the lowest ratings. Drag a box on the chart to see which food types sit in each area.</p>
+      <div id="linked"></div>
+    </section>
+  </main> 
+
+  <footer>
+    <h2>Data sources</h2>
+    <p>ABS National Health Survey 2022, Table 2. OpenHSR (N'kam Suguem and Lafargue, 2025), Zenodo. ABS ASGS 2021 boundaries. AI tools were used to help with data cleaning and text; all charts were built by the author.</p>
+  </footer>
+
+  <script>
+    const opts = { actions: false,
+    config: {
+    font: "Inter, sans-serif",
+    title: { fontSize: 17, subtitleFontSize: 13, anchor: "start" },
+    axis: { labelFontSize: 12, titleFontSize: 13 },
+    legend: { labelFontSize: 12, titleFontSize: 13 }
+  } };
+    function show(id, file) { vegaEmbed('#' + id, file, opts).catch(console.error); }
+
+    show('choropleth_map', 'charts/map1_choropleth.vg.json');
+    show('tile_map', 'charts/map2.vg.json');
+    show('symbol_map', 'charts/map3_symbol.vg.json');
+    show('boxplot', 'charts/chart_boxplot_sugar.vg.json');
+    show('heatmap', 'charts/chart_heatmap_stars.vg.json');
+    show('linked', 'charts/chart_linked_scatter.vg.json');
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Ratings vary widely within most food types",
+    "subtitle": "Number of products at each Health Star Rating. Rows run from healthiest to least healthy on average.",
+    "anchor": "start"
+  },
+  "width": 520,
+  "height": 380,
+  "data": {
+    "url": "data/openhsr_clean.csv"
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "mean",
+          "field": "HSR",
+          "as": "mean_hsr"
+        }
+      ],
+      "groupby": [
+        "product_group"
+      ]
+    },
+    {
+      "aggregate": [
+        {
+          "op": "count",
+          "as": "n"
+        }
+      ],
+      "groupby": [
+        "product_group",
+        "HSR",
+        "mean_hsr"
+      ]
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "product_group",
+      "type": "nominal",
+      "title": "Food type",
+      "sort": {
+        "field": "mean_hsr",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelLimit": 220
+      }
+    },
+    "x": {
+      "field": "HSR",
+      "type": "ordinal",
+      "title": "Health Star Rating (stars)",
+      "axis": {
+        "labelAngle": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "n",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "greys"
+          },
+          "legend": {
+            "title": "Products"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "product_group",
+            "title": "Food type"
+          },
+          {
+            "field": "HSR",
+            "title": "Stars"
+          },
+          {
+            "field": "n",
+            "title": "Products"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.n >= 10"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "color": "white",
+        "fontWeight": "bold",
+        "fontSize": 13
+      },
+      "encoding": {
+        "text": {
+          "field": "n",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

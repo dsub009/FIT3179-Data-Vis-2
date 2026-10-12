@@ -1,0 +1,109 @@
+state,measure,percent
+New South Wales,Diabetes,5.1
+Victoria,Diabetes,5.0
+Queensland,Diabetes,5.1
+South Australia,Diabetes,7.2
+Western Australia,Diabetes,5.2
+Tasmania,Diabetes,6.1
+Northern Territory,Diabetes,5.7
+Australian Capital Territory,Diabetes,3.4
+Australia,Diabetes,5.3
+New South Wales,Hypertension (self-reported),11.0
+Victoria,Hypertension (self-reported),12.0
+Queensland,Hypertension (self-reported),11.1
+South Australia,Hypertension (self-reported),13.7
+Western Australia,Hypertension (self-reported),11.3
+Tasmania,Hypertension (self-reported),16.2
+Northern Territory,Hypertension (self-reported),10.2
+Australian Capital Territory,Hypertension (self-reported),12.1
+Australia,Hypertension (self-reported),11.6
+New South Wales,Excellent or very good health,55.3
+Victoria,Excellent or very good health,60.9
+Queensland,Excellent or very good health,54.6
+South Australia,Excellent or very good health,53.9
+Western Australia,Excellent or very good health,55.4
+Tasmania,Excellent or very good health,50.5
+Northern Territory,Excellent or very good health,56.9
+Australian Capital Territory,Excellent or very good health,61.3
+Australia,Excellent or very good health,56.5
+New South Wales,Obese,30.4
+Victoria,Obese,30.5
+Queensland,Obese,34.6
+South Australia,Obese,33.3
+Western Australia,Obese,31.5
+Tasmania,Obese,37.0
+Northern Territory,Obese,34.3
+Australian Capital Territory,Obese,29.7
+Australia,Obese,31.7
+New South Wales,Overweight or obese,63.1
+Victoria,Overweight or obese,65.3
+Queensland,Overweight or obese,68.8
+South Australia,Overweight or obese,68.0
+Western Australia,Overweight or obese,68.0
+Tasmania,Overweight or obese,70.5
+Northern Territory,Overweight or obese,63.8
+Australian Capital Territory,Overweight or obese,64.0
+Australia,Overweight or obese,65.8
+New South Wales,Substantially increased waist risk,45.2
+Victoria,Substantially increased waist risk,45.6
+Queensland,Substantially increased waist risk,50.7
+South Australia,Substantially increased waist risk,50.5
+Western Australia,Substantially increased waist risk,47.3
+Tasmania,Substantially increased waist risk,50.5
+Northern Territory,Substantially increased waist risk,46.1
+Australian Capital Territory,Substantially increased waist risk,42.0
+Australia,Substantially increased waist risk,47.0
+New South Wales,Fruit guideline not met,54.2
+Victoria,Fruit guideline not met,55.3
+Queensland,Fruit guideline not met,57.1
+South Australia,Fruit guideline not met,58.3
+Western Australia,Fruit guideline not met,56.2
+Tasmania,Fruit guideline not met,58.7
+Northern Territory,Fruit guideline not met,59.9
+Australian Capital Territory,Fruit guideline not met,58.6
+Australia,Fruit guideline not met,55.8
+New South Wales,Vegetable guideline not met,93.2
+Victoria,Vegetable guideline not met,93.6
+Queensland,Vegetable guideline not met,94.9
+South Australia,Vegetable guideline not met,92.2
+Western Australia,Vegetable guideline not met,92.3
+Tasmania,Vegetable guideline not met,89.1
+Northern Territory,Vegetable guideline not met,93.9
+Australian Capital Territory,Vegetable guideline not met,92.3
+Australia,Vegetable guideline not met,93.5
+New South Wales,Neither fruit nor veg guideline met,52.2
+Victoria,Neither fruit nor veg guideline met,52.9
+Queensland,Neither fruit nor veg guideline met,55.5
+South Australia,Neither fruit nor veg guideline met,54.5
+Western Australia,Neither fruit nor veg guideline met,53.2
+Tasmania,Neither fruit nor veg guideline met,55.3
+Northern Territory,Neither fruit nor veg guideline met,57.2
+Australian Capital Territory,Neither fruit nor veg guideline met,55.6
+Australia,Neither fruit nor veg guideline met,53.6
+New South Wales,High blood pressure (measured),23.8
+Victoria,High blood pressure (measured),23.9
+Queensland,High blood pressure (measured),20.0
+South Australia,High blood pressure (measured),26.9
+Western Australia,High blood pressure (measured),24.2
+Tasmania,High blood pressure (measured),29.2
+Northern Territory,High blood pressure (measured),19.6
+Australian Capital Territory,High blood pressure (measured),22.6
+Australia,High blood pressure (measured),23.3
+New South Wales,Daily smoker,10.0
+Victoria,Daily smoker,9.3
+Queensland,Daily smoker,14.0
+South Australia,Daily smoker,9.7
+Western Australia,Daily smoker,10.5
+Tasmania,Daily smoker,12.4
+Northern Territory,Daily smoker,13.5
+Australian Capital Territory,Daily smoker,5.9
+Australia,Daily smoker,10.6
+New South Wales,Physical activity guideline not met,76.1
+Victoria,Physical activity guideline not met,75.3
+Queensland,Physical activity guideline not met,76.4
+South Australia,Physical activity guideline not met,76.1
+Western Australia,Physical activity guideline not met,77.2
+Tasmania,Physical activity guideline not met,77.8
+Northern Territory,Physical activity guideline not met,75.4
+Australian Capital Territory,Physical activity guideline not met,79.3
+Australia,Physical activity guideline not met,76.2

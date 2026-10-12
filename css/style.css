@@ -1,0 +1,31 @@
+html { font-size: 17px; }
+body { font-family: "Inter", sans-serif; color: #222; line-height: 1.6; margin: 0; background: #fffdf9; }
+
+header, main, footer { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+header { padding-top: 56px; padding-bottom: 12px; }
+
+h1, h2, h3 { font-family: "Fraunces", serif; line-height: 1.2; }
+h1 { font-size: 3rem; margin: 0 0 0.2em; }
+h2 { font-size: 1.9rem; margin: 72px 0 8px; padding-top: 24px; border-top: 1px solid #e6e1d8; }
+h3 { font-size: 1.35rem; margin: 0 0 0.5em; }
+
+.subtitle { font-size: 1.2rem; color: #555; margin: 0; }
+.byline { font-size: 0.9rem; color: #777; }
+
+.story-row { display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin: 40px 0; align-items: start; }
+.story-row > div:first-child { position: sticky; top: 24px; }
+.story-row > div:last-child { min-width: 0; }
+.story-row p { margin: 0 0 0.8em; line-height: 1.7; }
+
+.source { font-size: 0.8rem; color: #777; margin-top: 4px; }
+footer { padding-bottom: 60px; font-size: 0.85rem; color: #555; }
+
+.c-health { color: #54278f; font-weight: 600; }
+.c-diet   { color: #d94801; font-weight: 600; }
+.c-import { color: #2171b5; font-weight: 600; }
+.c-stars  { color: #00682b; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .story-row { grid-template-columns: 1fr; }
+  .story-row > div:first-child { position: static; }
+}

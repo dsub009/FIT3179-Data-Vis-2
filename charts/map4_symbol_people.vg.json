@@ -1,0 +1,177 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The highest rate is not where most people are",
+    "subtitle": "Estimated number of overweight or obese adults. Bigger circle = more people.",
+    "anchor": "start"
+  },
+  "width": 560,
+  "height": 450,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [
+      -134,
+      0,
+      0
+    ],
+    "parallels": [
+      -18,
+      -36
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "STE_2021_AUST_GDA2020"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ece8df",
+        "stroke": "white",
+        "strokeWidth": 1.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_adults.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/health_by_state.csv"
+            },
+            "key": "state",
+            "fields": [
+              "overweight_obese_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.adults * datum.overweight_obese_pct / 100",
+          "as": "n"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#54278f",
+        "opacity": 0.75,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "n",
+          "type": "quantitative",
+          "title": "Overweight or obese adults",
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              40,
+              5200
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "values": [
+              500000,
+              1000000,
+              3000000
+            ],
+            "symbolFillColor": "#54278f",
+            "symbolOpacity": 0.75,
+            "labelExpr": "datum.value >= 1000000 ? (datum.value / 1000000) + ' million' : (datum.value / 1000) + ' thousand'"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "overweight_obese_pct",
+            "title": "Rate (%)"
+          },
+          {
+            "field": "adults",
+            "title": "Adults (citizens)",
+            "format": ",.0f"
+          },
+          {
+            "field": "n",
+            "title": "Overweight or obese adults",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_adults.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/health_by_state.csv"
+            },
+            "key": "state",
+            "fields": [
+              "overweight_obese_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.adults * datum.overweight_obese_pct / 100",
+          "as": "n"
+        },
+        {
+          "filter": "datum.n > 250000"
+        },
+        {
+          "calculate": "datum.abbr + '  ' + format(datum.n / 1000000, '.1f') + ' m'",
+          "as": "lbl"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#222",
+        "dy": -2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "lbl"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

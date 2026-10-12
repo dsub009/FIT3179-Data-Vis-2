@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "100 g of snacks and sweets hold about 10 teaspoons of sugar",
+    "subtitle": "Typical (median) sugar per 100 g. One spoon = 1 teaspoon = 4 g. Faded spoons are part-teaspoons.",
+    "anchor": "start"
+  },
+  "width": 740,
+  "height": 420,
+  "data": {
+    "url": "data/openhsr_clean.csv"
+  },
+  "transform": [
+    {
+      "aggregate": [
+        {
+          "op": "median",
+          "field": "sugars_g_per_100g",
+          "as": "med"
+        }
+      ],
+      "groupby": [
+        "product_group"
+      ]
+    },
+    {
+      "calculate": "datum.med / 4",
+      "as": "tsp"
+    },
+    {
+      "calculate": "sequence(0, 11)",
+      "as": "i"
+    },
+    {
+      "flatten": [
+        "i"
+      ]
+    },
+    {
+      "calculate": "min(1, max(0, datum.tsp - datum.i))",
+      "as": "fill"
+    },
+    {
+      "filter": "datum.fill > 0.05"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "product_group",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Snacks & sweets",
+        "Other",
+        "Bakery",
+        "Breakfast cereals",
+        "Drinks",
+        "Dairy & eggs",
+        "Sauces & other processed",
+        "Vegetables & canned",
+        "Frozen foods",
+        "Meat",
+        "Pasta, rice & grains"
+      ],
+      "axis": {
+        "labelLimit": 220,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "size": 3500,
+        "strokeWidth": 0,
+        "shape": "M0.994,-0.113 L0.976,-0.142 L0.941,-0.142 L0.828,-0.119 L0.780,-0.119 L0.774,-0.113 L0.680,-0.107 L0.674,-0.101 L0.602,-0.101 L0.596,-0.095 L0.501,-0.095 L0.496,-0.089 L0.329,-0.089 L0.323,-0.083 L-0.086,-0.089 L-0.211,-0.065 L-0.306,-0.030 L-0.359,0.000 L-0.988,0.000 L-1.000,0.018 L-0.976,0.053 L-0.899,0.131 L-0.798,0.190 L-0.691,0.220 L-0.579,0.226 L-0.573,0.220 L-0.507,0.214 L-0.436,0.184 L-0.377,0.125 L-0.347,0.053 L-0.318,0.018 L-0.252,-0.018 L-0.163,-0.047 L-0.098,-0.053 L-0.092,-0.059 L0.181,-0.059 L0.187,-0.053 L0.472,-0.047 L0.478,-0.042 L0.680,-0.047 L0.685,-0.053 L0.757,-0.053 L0.763,-0.059 L0.822,-0.059 L0.828,-0.065 L0.947,-0.077 L0.982,-0.089 Z M-0.905,-0.024 L-0.436,-0.024 L-0.632,-0.220 L-0.656,-0.231 L-0.680,-0.231 L-0.709,-0.220 Z",
+        "filled": true,
+        "fill": "#d94801"
+      },
+      "encoding": {
+        "x": {
+          "field": "i",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -0.4,
+              11.6
+            ]
+          }
+        },
+        "opacity": {
+          "field": "fill",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ],
+            "range": [
+              0.15,
+              1
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "product_group",
+            "title": "Food type"
+          },
+          {
+            "field": "tsp",
+            "title": "Teaspoons per 100 g",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.i == 0"
+        },
+        {
+          "calculate": "format(datum.tsp, '.1f') + ' tsp'",
+          "as": "lab"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#333"
+      },
+      "encoding": {
+        "x": {
+          "datum": 11.1,
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "lab",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

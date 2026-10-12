@@ -1,0 +1,9 @@
+group,retailer,mean_hsr,n
+All products,Aldi,3.52,80
+All products,Woolworths,2.65,150
+Bakery,Aldi,2.38,8
+Bakery,Woolworths,1.89,9
+Sauces & other processed,Aldi,3.57,14
+Sauces & other processed,Woolworths,2.10,25
+Vegetables & canned,Aldi,3.17,9
+Vegetables & canned,Woolworths,4.62,8

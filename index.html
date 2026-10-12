@@ -15,72 +15,180 @@
   <header>
     <h1>What's really in the packet?</h1>
     <p class="subtitle">Health, diet and packaged food in Australia</p>
+    <p class="intro">Two in three Australian adults carry extra weight. Packaged food is part of that story. We look at how people eat, what sits on the shelf, and where food comes from.</p>
     <p class="byline">By Dhakshini Subramanian · Student ID 35097698 · October 2026</p>
   </header>
 
   <main>
-    <section>
-    <h2>1. How are Australians eating?</h2>
+    <!-- 1. THE PROBLEM -->
+    <section class="reveal">
+      <p class="kicker">1 · The problem</p>
+      <h2>How are Australians eating?</h2>
+      <p>If Australia were 100 adults, here is how many struggle with weight and the daily fruit and vegetable guidelines.</p>
+      <div class="card"><div id="waffle"></div>
+        <p class="source">Source: ABS National Health Survey 2022. National figures, rounded to the nearest whole number.</p></div>
 
-    <div class="story-row">
-    <div>
-      <h3>Two in three adults carry extra weight</h3>
-      <p><span class="c-health">65.8%</span> of adults are overweight or obese.</p>
-      <p>Tasmania is highest at <span class="c-health">70.5%</span>. New South Wales is lowest at <span class="c-health">63.1%</span>.</p>
-    </div>
-    <div>
-      <div id="choropleth_map"></div>
-      <p class="source">Source: ABS National Health Survey 2022.</p>
-    </div>
-  </div>
+      <div class="story-row step">
+        <div>
+          <span class="stat weight">65.8%</span>
+          <h3>Two in three adults carry extra weight</h3>
+          <p>Tasmania is highest at <span class="c-health">70.5%</span>. New South Wales is lowest at <span class="c-health">63.1%</span>.</p>
+        </div>
+        <div class="card">
+          <div id="choropleth_map"></div>
+          <p class="source">Source: ABS National Health Survey 2022.</p>
+        </div>
+      </div>
 
-      <p>Fruit and vegetables tell a similar story. More than half of adults (55.8%) miss the fruit guideline, and 93.5% miss the vegetable guideline.</p>
-      <div id="tile_map"></div>
-      <p class="source">Source: ABS National Health Survey 2022.</p>
+      <div class="story-row flip">
+        <div>
+          <span class="stat weight">3.7 m</span>
+          <h3>The highest rate is not where most people are</h3>
+          <p>Tasmania has the highest rate, but only about 0.3 million adults. New South Wales has the lowest rate, yet the most people.</p>
+        </div>
+        <div class="card">
+          <div id="people_map"></div>
+          <p class="source">Sources: ABS National Health Survey 2022 (rates). Australian Electoral Commission estimated eligible population, 31 March 2026 (adult citizens). Counts are estimates.</p>
+        </div>
+      </div>
+
+      <div class="story-row">
+        <div>
+          <span class="stat diet">93.5%</span>
+          <h3>Almost nobody meets the vegetable guideline</h3>
+          <p>More than half of adults (55.8%) also miss the fruit guideline. Use the menu to switch measures.</p>
+        </div>
+        <div class="card">
+          <div id="tile_map"></div>
+          <p class="source">Source: ABS National Health Survey 2022. Each tile is one state or territory.</p>
+        </div>
+      </div>
+      <p class="note">So what is sitting on the shelf? Let's look inside the packet.</p>
     </section>
 
-    <section>
-      <h2>5. Where does it come from?</h2>
-      <p>Write two sentences about the biggest sources, using your real numbers.</p>
-      <div id="symbol_map"></div>
-      <p class="source">Source: DFAT merchandise trade statistical pivot tables (ABS International Trade in Goods).</p>
+    <!-- 2. THE SHELF -->
+    <section class="reveal">
+      <p class="kicker">2 · The shelf</p>
+      <h2>What's on the shelf?</h2>
+      <p>Snacks and sweets are the clear outlier. Half of them have more than 39.7 g of sugar per 100 g. Pasta, rice and grains have a median of just 0.6 g.</p>
+      <div class="card"><div id="boxplot"></div></div>
+
+      <p class="step">Star ratings follow the same pattern. 11 of the 18 snacks and sweets earn only half a star. All 20 pasta, rice and grain products earn 3 stars or more.</p>
+      <div class="card"><div id="heatmap"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). 246 Australian packaged products.</p></div>
+
+      <p class="step">Sweeter products carry more energy, and the sweetest earn the lowest ratings. Drag a box on the chart to see which food types sit in each area.</p>
+      <div class="card"><div id="linked"></div></div>
+
+      <p class="step">Sugar is easier to picture in teaspoons. A typical 100 g of snacks and sweets holds about 10. Pasta, rice and grains hold less than a quarter of one.</p>
+      <div class="card"><div id="pictogram"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Sugars include natural sugars, such as those in milk and fruit.</p></div>
+
+      <p class="step">Sugar is not the only difference. Snacks lead on sugar and saturated fat. Vegetables and canned foods lead on salt. Meat leads on protein, and breakfast cereals lead on fibre.</p>
+      <div class="card"><div id="fingerprint"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Fibre shows 0.0 where the label gives none.</p></div>
     </section>
 
-    <section>
-      <h2>2. What's on the shelf?</h2>
-      <p>Snacks and sweets are the clear outlier. Half of them have more than 39.7 g of sugar per 100 g, while pasta, rice and grains have a median of just 0.6 g.</p>
-      <div id="boxplot"></div>
+    <!-- 3. SIMILAR PRODUCTS -->
+    <section class="reveal">
+      <p class="kicker">3 · Similar products</p>
+      <h2>Look closer at similar products</h2>
+      <p>Two products in the same aisle can look alike on the shelf. Pick any two breakfast cereals and compare them.</p>
+      <div class="card"><div id="headtohead"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Per 100 g.</p></div>
 
-      <p>Star ratings follow the same pattern. 11 of the 18 snacks and sweets earn only half a star, while all 20 pasta, rice and grain products earn 3 stars or more.</p>
-      <div id="heatmap"></div>
-      <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025).</p>
-
-      <p>Sweeter products tend to carry more energy, and many of the sweetest earn the lowest ratings. Drag a box on the chart to see which food types sit in each area.</p>
-      <div id="linked"></div>
+      <p class="step">Now compare stores. Aldi products average 3.5 stars in this sample. Woolworths averages 2.6. It looks like a clear win for Aldi.</p>
+      <p>But the gap is partly about what each store sells here. Aldi has many frozen, pasta and rice products. Woolworths has more snacks and drinks.</p>
+      <div class="card"><div id="slope"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Products sold at both stores count for each store. Coles products appear only alongside Woolworths in this dataset, so Coles is not compared.</p></div>
+      <p class="note">Compare like with like and the story changes. Aldi leads in bakery and sauces. Woolworths leads in vegetables and canned food.</p>
     </section>
-  </main> 
+
+    <!-- 4. WHERE IT COMES FROM -->
+    <section class="reveal">
+      <p class="kicker">4 · The supply</p>
+      <h2>Where does Australia's food come from?</h2>
+      <p>New Zealand is the biggest source, at A$3.1 billion. The United States and China follow.</p>
+      <p>Five Southeast Asian countries send A$5.7 billion between them. Malaysia ranks eighth, at A$851 million.</p>
+      <div class="card">
+        <div class="controls"><button id="play">▶ Play</button></div>
+        <div id="flow_map"></div>
+        <p class="source">Source: DFAT merchandise trade statistical pivot tables (ABS International Trade in Goods). Top 16 sources, 2025.</p>
+      </div>
+    </section>
+
+    <!-- 5. TAKEAWAY -->
+    <section class="reveal">
+      <p class="kicker">5 · The takeaway</p>
+      <h2>What to remember at the shelf</h2>
+      <div class="takeaways">
+        <div><span class="stat diet">39.7 g</span><p>Median sugar per 100 g in snacks and sweets.</p></div>
+        <div><span class="stat stars">39 of 40</span><p>Products with 25 g+ sugar that score 3 stars or fewer.</p></div>
+        <div><span class="stat stars">2 of 3</span><p>Like-for-like food types where Aldi leads. Overall averages can mislead.</p></div>
+      </div>
+      <p>Next time you shop, check the star rating first. Then compare sugar per 100 g between similar products.</p>
+    </section>
+  </main>
 
   <footer>
     <h2>Data sources</h2>
-    <p>ABS National Health Survey 2022, Table 2. OpenHSR (N'kam Suguem and Lafargue, 2025), Zenodo. ABS ASGS 2021 boundaries. AI tools were used to help with data cleaning and text; all charts were built by the author.</p>
+    <p>ABS National Health Survey 2022, Table 2. OpenHSR (N'kam Suguem and Lafargue, 2025), Zenodo. DFAT merchandise trade pivot tables. Australian Electoral Commission, estimated eligible population (31 March 2026). ABS ASGS 2021 boundaries. Natural Earth country boundaries. AI tools were used to help with data cleaning and text; all charts were built by the author using Vega-Lite.</p>
   </footer>
 
   <script>
-    const opts = { actions: false,
-    config: {
-    font: "Inter, sans-serif",
-    title: { fontSize: 17, subtitleFontSize: 13, anchor: "start" },
-    axis: { labelFontSize: 12, titleFontSize: 13 },
-    legend: { labelFontSize: 12, titleFontSize: 13 }
-  } };
-    function show(id, file) { vegaEmbed('#' + id, file, opts).catch(console.error); }
+    const opts = { actions: false, renderer: "svg", config: {
+      font: "Inter, sans-serif",
+      title: { fontSize: 17, subtitleFontSize: 13, anchor: "start", subtitleColor: "#555" },
+      axis: { labelFontSize: 12, titleFontSize: 13 },
+      legend: { labelFontSize: 12, titleFontSize: 13 }
+    } };
 
+    async function show(id, file) {
+      try {
+        const spec = await (await fetch(file)).json();
+        return await vegaEmbed('#' + id, spec, opts);
+      } catch (e) { console.error(id, e); }
+    }
+
+    // Section 1
+    show('waffle', 'charts/chart_waffle.vg.json');
     show('choropleth_map', 'charts/map1_choropleth.vg.json');
+    show('people_map', 'charts/map4_symbol_people.vg.json');
     show('tile_map', 'charts/map2.vg.json');
-    show('symbol_map', 'charts/map3_symbol.vg.json');
+
+    // Section 2
     show('boxplot', 'charts/chart_boxplot_sugar.vg.json');
     show('heatmap', 'charts/chart_heatmap_stars.vg.json');
     show('linked', 'charts/chart_linked_scatter.vg.json');
+    show('pictogram', 'charts/chart_pictogram_sugar.vg.json');
+    show('fingerprint', 'charts/chart_nutrient_fingerprint.vg.json');
+
+    // Section 3
+    show('headtohead', 'charts/chart_headtohead.vg.json');
+    show('slope', 'charts/chart_slope_retailer.vg.json');
+
+    // Section 4: flow map with Play button (adds sources from largest to smallest)
+    show('flow_map', 'charts/map3_flow.vg.json').then(res => {
+      if (!res) return;
+      const view = res.view;
+      let timer = null;
+      document.getElementById('play').onclick = () => {
+        clearInterval(timer);
+        let n = 1;
+        view.signal('top', n).run();
+        timer = setInterval(() => {
+          n++;
+          view.signal('top', n).run();
+          if (n >= 16) clearInterval(timer);
+        }, 700);
+      };
+    });
+
+    // Scroll reveal
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
 </html>

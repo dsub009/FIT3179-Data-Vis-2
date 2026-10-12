@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Two similar cereals, very different labels",
+    "subtitle": "Pick two breakfast cereals. Bars show how much more one has than the other, per 100 g.",
+    "anchor": "start"
+  },
+  "width": 480,
+  "height": 240,
+  "data": {
+    "url": "data/openhsr_clean.csv"
+  },
+  "params": [
+    {
+      "name": "productA",
+      "value": "splitstix",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All-Bran Original",
+          "All-Bran honey Almond",
+          "All-Bran wheat flake",
+          "Coco pops chocos",
+          "Coco pops pillows",
+          "Corn Thins Original \u2013 Real Foods",
+          "Corn flakes plus multi grain",
+          "High protein Granola honey nut",
+          "Jatz original \u2013 Arnotts",
+          "Just Right",
+          "Weet-Bix \u2013 Sanitarium",
+          "chop chip",
+          "coco pops ",
+          "corn flakes",
+          "cripx honey",
+          "rice bubbles",
+          "special K gluten free",
+          "splitstix",
+          "treatz"
+        ],
+        "name": "Product A (teal): "
+      }
+    },
+    {
+      "name": "productB",
+      "value": "Corn Thins Original \u2013 Real Foods",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All-Bran Original",
+          "All-Bran honey Almond",
+          "All-Bran wheat flake",
+          "Coco pops chocos",
+          "Coco pops pillows",
+          "Corn Thins Original \u2013 Real Foods",
+          "Corn flakes plus multi grain",
+          "High protein Granola honey nut",
+          "Jatz original \u2013 Arnotts",
+          "Just Right",
+          "Weet-Bix \u2013 Sanitarium",
+          "chop chip",
+          "coco pops ",
+          "corn flakes",
+          "cripx honey",
+          "rice bubbles",
+          "special K gluten free",
+          "splitstix",
+          "treatz"
+        ],
+        "name": "Product B (dark): "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.product_name === productA || datum.product_name === productB"
+    },
+    {
+      "fold": [
+        "sugars_g_per_100g",
+        "sat_fat_g_per_100g",
+        "sodium_mg_per_100g",
+        "fiber_g_per_100g",
+        "protein_g_per_100g"
+      ],
+      "as": [
+        "key",
+        "value"
+      ]
+    },
+    {
+      "calculate": "{\"sugars_g_per_100g\": \"Sugars (g)\", \"sat_fat_g_per_100g\": \"Saturated fat (g)\", \"sodium_mg_per_100g\": \"Salt: sodium (mg)\", \"fiber_g_per_100g\": \"Fibre (g)\", \"protein_g_per_100g\": \"Protein (g)\"}[datum.key]",
+      "as": "nutrient"
+    },
+    {
+      "calculate": "datum.product_name === productA ? datum.value : null",
+      "as": "a"
+    },
+    {
+      "calculate": "datum.product_name === productB ? datum.value : null",
+      "as": "b"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "a",
+          "as": "a_val"
+        },
+        {
+          "op": "max",
+          "field": "b",
+          "as": "b_val"
+        }
+      ],
+      "groupby": [
+        "nutrient"
+      ]
+    },
+    {
+      "filter": "datum.product_name === productA"
+    },
+    {
+      "calculate": "max(datum.a_val, datum.b_val) == 0 ? 0 : (datum.a_val - datum.b_val) / max(datum.a_val, datum.b_val)",
+      "as": "diff"
+    },
+    {
+      "calculate": "datum.diff >= 0 ? 'A has more' : 'B has more'",
+      "as": "who"
+    },
+    {
+      "calculate": "'A ' + format(datum.a_val, '.1f') + '  vs  B ' + format(datum.b_val, '.1f')",
+      "as": "lbl"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": 22
+      },
+      "encoding": {
+        "y": {
+          "field": "nutrient",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Sugars (g)",
+            "Saturated fat (g)",
+            "Salt: sodium (mg)",
+            "Fibre (g)",
+            "Protein (g)"
+          ],
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 13
+          }
+        },
+        "x": {
+          "field": "diff",
+          "type": "quantitative",
+          "title": "\u2190 B has more      A has more \u2192",
+          "scale": {
+            "domain": [
+              -1,
+              1
+            ]
+          },
+          "axis": {
+            "format": "%",
+            "tickCount": 5,
+            "grid": false,
+            "labelExpr": "format(abs(datum.value), '.0%')"
+          }
+        },
+        "color": {
+          "field": "who",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "A has more",
+              "B has more"
+            ],
+            "range": [
+              "#0f766e",
+              "#1f2a2e"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "nutrient",
+            "title": "Nutrient"
+          },
+          {
+            "field": "lbl",
+            "title": "Per 100 g"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#999"
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "color": "#555",
+        "dy": -17,
+        "align": "center"
+      },
+      "encoding": {
+        "y": {
+          "field": "nutrient",
+          "type": "nominal",
+          "sort": [
+            "Sugars (g)",
+            "Saturated fat (g)",
+            "Salt: sodium (mg)",
+            "Fibre (g)",
+            "Protein (g)"
+          ]
+        },
+        "x": {
+          "datum": 0,
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "lbl"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

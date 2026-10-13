@@ -1,0 +1,45 @@
+link_id,src,tgt,value,cat,x0,x1,sy0,sy1,ty0,ty1
+Aldi > Vegetables & canned,Aldi,Vegetables & canned,9,Store,0.035,1,0.08,0.1132,0.0,0.0332
+"Aldi > Pasta, rice & grains",Aldi,"Pasta, rice & grains",19,Store,0.035,1,0.1132,0.1834,0.0828,0.153
+Aldi > Frozen foods,Aldi,Frozen foods,27,Store,0.035,1,0.1834,0.2832,0.1767,0.2764
+Aldi > Sauces & other processed,Aldi,Sauces & other processed,14,Store,0.035,1,0.2832,0.3349,0.5174,0.5691
+Aldi > Dairy & eggs,Aldi,Dairy & eggs,1,Store,0.035,1,0.3349,0.3386,0.6814,0.6851
+Aldi > Drinks,Aldi,Drinks,2,Store,0.035,1,0.3386,0.3459,0.7901,0.7975
+Aldi > Bakery,Aldi,Bakery,8,Store,0.035,1,0.3459,0.3755,0.895,0.9246
+Woolworths > Vegetables & canned,Woolworths,Vegetables & canned,8,Store,0.035,1,0.3955,0.425,0.0332,0.0628
+"Woolworths > Pasta, rice & grains",Woolworths,"Pasta, rice & grains",1,Store,0.035,1,0.425,0.4287,0.153,0.1567
+Woolworths > Breakfast cereals,Woolworths,Breakfast cereals,19,Store,0.035,1,0.4287,0.4989,0.2964,0.3666
+Woolworths > Meat,Woolworths,Meat,30,Store,0.035,1,0.4989,0.6097,0.3866,0.4974
+Woolworths > Sauces & other processed,Woolworths,Sauces & other processed,25,Store,0.035,1,0.6097,0.7021,0.5691,0.6614
+Woolworths > Dairy & eggs,Woolworths,Dairy & eggs,23,Store,0.035,1,0.7021,0.787,0.6851,0.7701
+Woolworths > Drinks,Woolworths,Drinks,21,Store,0.035,1,0.787,0.8646,0.7975,0.875
+Woolworths > Bakery,Woolworths,Bakery,9,Store,0.035,1,0.8646,0.8978,0.9246,0.9578
+Woolworths > Snacks & sweets,Woolworths,Snacks & sweets,6,Store,0.035,1,0.8978,0.92,0.9778,1.0
+Vegetables & canned > High,Vegetables & canned,High,12,High (3.5-5),1.035,2,0.0,0.0443,0.07,0.1143
+Vegetables & canned > Middle,Vegetables & canned,Middle,5,Middle (2-3),1.035,2,0.0443,0.0628,0.4889,0.5074
+"Pasta, rice & grains > High","Pasta, rice & grains",High,19,High (3.5-5),1.035,2,0.0828,0.153,0.1143,0.1845
+"Pasta, rice & grains > Middle","Pasta, rice & grains",Middle,1,Middle (2-3),1.035,2,0.153,0.1567,0.5074,0.5111
+Frozen foods > High,Frozen foods,High,18,High (3.5-5),1.035,2,0.1767,0.2432,0.1845,0.251
+Frozen foods > Middle,Frozen foods,Middle,8,Middle (2-3),1.035,2,0.2432,0.2727,0.5111,0.5406
+Frozen foods > Low,Frozen foods,Low,1,Low (0.5-1.5),1.035,2,0.2727,0.2764,0.7453,0.749
+Breakfast cereals > High,Breakfast cereals,High,10,High (3.5-5),1.035,2,0.2964,0.3333,0.251,0.2879
+Breakfast cereals > Middle,Breakfast cereals,Middle,6,Middle (2-3),1.035,2,0.3333,0.3555,0.5406,0.5628
+Breakfast cereals > Low,Breakfast cereals,Low,3,Low (0.5-1.5),1.035,2,0.3555,0.3666,0.749,0.7601
+Meat > High,Meat,High,17,High (3.5-5),1.035,2,0.3866,0.4494,0.2879,0.3507
+Meat > Middle,Meat,Middle,7,Middle (2-3),1.035,2,0.4494,0.4752,0.5628,0.5886
+Meat > Low,Meat,Low,6,Low (0.5-1.5),1.035,2,0.4752,0.4974,0.7601,0.7823
+Sauces & other processed > High,Sauces & other processed,High,12,High (3.5-5),1.035,2,0.5174,0.5617,0.3507,0.395
+Sauces & other processed > Middle,Sauces & other processed,Middle,13,Middle (2-3),1.035,2,0.5617,0.6097,0.5886,0.6367
+Sauces & other processed > Low,Sauces & other processed,Low,14,Low (0.5-1.5),1.035,2,0.6097,0.6614,0.7823,0.834
+Dairy & eggs > High,Dairy & eggs,High,8,High (3.5-5),1.035,2,0.6814,0.711,0.395,0.4246
+Dairy & eggs > Middle,Dairy & eggs,Middle,9,Middle (2-3),1.035,2,0.711,0.7442,0.6367,0.6699
+Dairy & eggs > Low,Dairy & eggs,Low,7,Low (0.5-1.5),1.035,2,0.7442,0.7701,0.834,0.8598
+Drinks > High,Drinks,High,9,High (3.5-5),1.035,2,0.7901,0.8233,0.4246,0.4578
+Drinks > Middle,Drinks,Middle,3,Middle (2-3),1.035,2,0.8233,0.8344,0.6699,0.681
+Drinks > Low,Drinks,Low,11,Low (0.5-1.5),1.035,2,0.8344,0.875,0.8598,0.9005
+Bakery > High,Bakery,High,2,High (3.5-5),1.035,2,0.895,0.9024,0.4578,0.4652
+Bakery > Middle,Bakery,Middle,10,Middle (2-3),1.035,2,0.9024,0.9394,0.681,0.7179
+Bakery > Low,Bakery,Low,5,Low (0.5-1.5),1.035,2,0.9394,0.9578,0.9005,0.9189
+Snacks & sweets > High,Snacks & sweets,High,1,High (3.5-5),1.035,2,0.9778,0.9815,0.4652,0.4689
+Snacks & sweets > Middle,Snacks & sweets,Middle,2,Middle (2-3),1.035,2,0.9815,0.9889,0.7179,0.7253
+Snacks & sweets > Low,Snacks & sweets,Low,3,Low (0.5-1.5),1.035,2,0.9889,1.0,0.9189,0.93

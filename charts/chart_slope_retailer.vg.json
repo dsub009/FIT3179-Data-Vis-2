@@ -1,213 +1,214 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Aldi scores higher overall, but not in every aisle",
-    "subtitle": "Average Health Star Rating. Like-for-like food types with 8+ products at each store.",
-    "anchor": "start"
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "title": {
+  "text": "Aldi scores higher overall, but not in every aisle",
+  "subtitle": "Average Health Star Rating. Like-for-like food types with 8+ products at each store.",
+  "anchor": "start"
+ },
+ "width": 520,
+ "height": 300,
+ "data": {
+  "url": "data/retailer_slope.csv"
+ },
+ "transform": [
+  {
+   "calculate": "datum.group === 'All products' ? 'all' : 'type'",
+   "as": "kind"
   },
-  "width": 520,
-  "height": 300,
-  "data": {
-    "url": "data/retailer_slope.csv"
-  },
-  "transform": [
-    {
-      "calculate": "datum.group === 'All products' ? 'all' : 'type'",
-      "as": "kind"
-    },
-    {
-      "calculate": "datum.group + '  ' + format(datum.mean_hsr, '.1f')",
-      "as": "left_label"
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "retailer",
-      "type": "ordinal",
-      "title": null,
-      "sort": [
-        "Aldi",
-        "Woolworths"
-      ],
-      "scale": {
-        "range": [
-          210,
-          380
-        ],
-        "padding": 0
-      },
-      "axis": {
-        "orient": "top",
-        "labelFontSize": 14,
-        "labelFontWeight": "bold",
-        "domain": false,
-        "ticks": false,
-        "labelPadding": 8,
-        "labelAngle": 0
-      }
-    },
-    "y": {
-      "field": "mean_hsr",
-      "type": "quantitative",
-      "title": "Average stars",
-      "scale": {
-        "domain": [
-          1,
-          5
-        ]
-      },
-      "axis": {
-        "orient": "right",
-        "tickCount": 4,
-        "grid": false,
-        "domain": false
-      }
-    },
-    "detail": {
-      "field": "group",
-      "type": "nominal"
-    }
-  },
-  "layer": [
-    {
-      "mark": {
-        "type": "line",
-        "interpolate": "linear"
-      },
-      "encoding": {
-        "color": {
-          "field": "kind",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "all",
-              "type"
-            ],
-            "range": [
-              "#00682b",
-              "#8a8a8a"
-            ]
-          },
-          "legend": null
-        },
-        "strokeWidth": {
-          "condition": {
-            "test": "datum.kind === 'all'",
-            "value": 4
-          },
-          "value": 2
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "circle",
-        "size": 90,
-        "opacity": 1
-      },
-      "encoding": {
-        "color": {
-          "field": "kind",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "all",
-              "type"
-            ],
-            "range": [
-              "#00682b",
-              "#8a8a8a"
-            ]
-          },
-          "legend": null
-        },
-        "tooltip": [
-          {
-            "field": "group",
-            "title": "Food type"
-          },
-          {
-            "field": "retailer",
-            "title": "Store"
-          },
-          {
-            "field": "mean_hsr",
-            "title": "Average stars",
-            "format": ".2f"
-          },
-          {
-            "field": "n",
-            "title": "Products"
-          }
-        ]
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.retailer === 'Aldi'"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -12,
-        "fontSize": 12,
-        "dy": {
-          "expr": "datum.group === 'All products' ? 9 : datum.group === 'Sauces & other processed' ? -9 : 0"
-        },
-        "fontWeight": {
-          "expr": "datum.kind === 'all' ? 'bold' : 'normal'"
-        }
-      },
-      "encoding": {
-        "text": {
-          "field": "left_label"
-        },
-        "color": {
-          "condition": {
-            "test": "datum.kind === 'all'",
-            "value": "#00682b"
-          },
-          "value": "#444"
-        }
-      }
-    },
-    {
-      "transform": [
-        {
-          "filter": "datum.retailer === 'Woolworths'"
-        }
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 12,
-        "fontSize": 12,
-        "dy": 0,
-        "fontWeight": {
-          "expr": "datum.kind === 'all' ? 'bold' : 'normal'"
-        }
-      },
-      "encoding": {
-        "text": {
-          "field": "mean_hsr",
-          "type": "quantitative",
-          "format": ".1f"
-        },
-        "color": {
-          "condition": {
-            "test": "datum.kind === 'all'",
-            "value": "#00682b"
-          },
-          "value": "#444"
-        }
-      }
-    }
-  ],
-  "config": {
-    "view": {
-      "stroke": null
-    }
+  {
+   "calculate": "datum.group + '  ' + format(datum.mean_hsr, '.1f')",
+   "as": "left_label"
   }
+ ],
+ "encoding": {
+  "x": {
+   "field": "retailer",
+   "type": "ordinal",
+   "title": null,
+   "sort": [
+    "Aldi",
+    "Woolworths"
+   ],
+   "scale": {
+    "range": [
+     210,
+     380
+    ],
+    "padding": 0
+   },
+   "axis": {
+    "orient": "top",
+    "labelFontSize": 17,
+    "labelFontWeight": "bold",
+    "domain": false,
+    "ticks": false,
+    "labelPadding": 12,
+    "labelAngle": 0,
+    "labelColor": "#1f2a2e"
+   }
+  },
+  "y": {
+   "field": "mean_hsr",
+   "type": "quantitative",
+   "title": "Average stars",
+   "scale": {
+    "domain": [
+     1,
+     5
+    ]
+   },
+   "axis": {
+    "orient": "right",
+    "tickCount": 4,
+    "grid": false,
+    "domain": false
+   }
+  },
+  "detail": {
+   "field": "group",
+   "type": "nominal"
+  }
+ },
+ "layer": [
+  {
+   "mark": {
+    "type": "line",
+    "interpolate": "linear"
+   },
+   "encoding": {
+    "color": {
+     "field": "kind",
+     "type": "nominal",
+     "scale": {
+      "domain": [
+       "all",
+       "type"
+      ],
+      "range": [
+       "#00682b",
+       "#8a8a8a"
+      ]
+     },
+     "legend": null
+    },
+    "strokeWidth": {
+     "condition": {
+      "test": "datum.kind === 'all'",
+      "value": 4
+     },
+     "value": 2
+    }
+   }
+  },
+  {
+   "mark": {
+    "type": "circle",
+    "size": 90,
+    "opacity": 1
+   },
+   "encoding": {
+    "color": {
+     "field": "kind",
+     "type": "nominal",
+     "scale": {
+      "domain": [
+       "all",
+       "type"
+      ],
+      "range": [
+       "#00682b",
+       "#8a8a8a"
+      ]
+     },
+     "legend": null
+    },
+    "tooltip": [
+     {
+      "field": "group",
+      "title": "Food type"
+     },
+     {
+      "field": "retailer",
+      "title": "Store"
+     },
+     {
+      "field": "mean_hsr",
+      "title": "Average stars",
+      "format": ".2f"
+     },
+     {
+      "field": "n",
+      "title": "Products"
+     }
+    ]
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.retailer === 'Aldi'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "right",
+    "dx": -12,
+    "fontSize": 12,
+    "dy": {
+     "expr": "datum.group === 'All products' ? 9 : datum.group === 'Sauces & other processed' ? -9 : 0"
+    },
+    "fontWeight": {
+     "expr": "datum.kind === 'all' ? 'bold' : 'normal'"
+    }
+   },
+   "encoding": {
+    "text": {
+     "field": "left_label"
+    },
+    "color": {
+     "condition": {
+      "test": "datum.kind === 'all'",
+      "value": "#00682b"
+     },
+     "value": "#444"
+    }
+   }
+  },
+  {
+   "transform": [
+    {
+     "filter": "datum.retailer === 'Woolworths'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "align": "left",
+    "dx": 12,
+    "fontSize": 12,
+    "dy": 0,
+    "fontWeight": {
+     "expr": "datum.kind === 'all' ? 'bold' : 'normal'"
+    }
+   },
+   "encoding": {
+    "text": {
+     "field": "mean_hsr",
+     "type": "quantitative",
+     "format": ".1f"
+    },
+    "color": {
+     "condition": {
+      "test": "datum.kind === 'all'",
+      "value": "#00682b"
+     },
+     "value": "#444"
+    }
+   }
+  }
+ ],
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ }
 }

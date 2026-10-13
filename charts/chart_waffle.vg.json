@@ -1,138 +1,138 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "If Australia were 100 adults",
-    "subtitle": "Each square is 1 adult in every 100. Short on fruit or vegetables = does not meet the daily guideline.",
-    "anchor": "start"
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "title": {
+  "text": "If Australia were 100 adults",
+  "subtitle": "Each square is 1 adult in every 100. Short on fruit or vegetables = does not meet the daily guideline.",
+  "anchor": "start"
+ },
+ "data": {
+  "url": "data/health_by_state.csv"
+ },
+ "transform": [
+  {
+   "filter": "datum.state === 'Australia'"
   },
-  "data": {
-    "url": "data/health_by_state.csv"
+  {
+   "fold": [
+    "overweight_obese_pct",
+    "fruit_not_met_pct",
+    "veg_not_met_pct"
+   ],
+   "as": [
+    "m",
+    "pct"
+   ]
   },
-  "transform": [
-    {
-      "filter": "datum.state === 'Australia'"
-    },
-    {
-      "fold": [
-        "overweight_obese_pct",
-        "fruit_not_met_pct",
-        "veg_not_met_pct"
-      ],
-      "as": [
-        "m",
-        "pct"
-      ]
-    },
-    {
-      "calculate": "{'overweight_obese_pct':'Overweight or obese','fruit_not_met_pct':'Short on fruit','veg_not_met_pct':'Short on vegetables'}[datum.m]",
-      "as": "label"
-    },
-    {
-      "calculate": "round(datum.pct)",
-      "as": "k"
-    },
-    {
-      "calculate": "sequence(0,100)",
-      "as": "i"
-    },
-    {
-      "flatten": [
-        "i"
-      ]
-    },
-    {
-      "calculate": "datum.i % 10",
-      "as": "col"
-    },
-    {
-      "calculate": "floor(datum.i / 10)",
-      "as": "row"
-    },
-    {
-      "calculate": "datum.i < datum.k ? 'yes' : 'no'",
-      "as": "on"
+  {
+   "calculate": "{'overweight_obese_pct':'Overweight or obese','fruit_not_met_pct':'Short on fruit','veg_not_met_pct':'Short on vegetables'}[datum.m]",
+   "as": "label"
+  },
+  {
+   "calculate": "round(datum.pct)",
+   "as": "k"
+  },
+  {
+   "calculate": "sequence(0,100)",
+   "as": "i"
+  },
+  {
+   "flatten": [
+    "i"
+   ]
+  },
+  {
+   "calculate": "datum.i % 10",
+   "as": "col"
+  },
+  {
+   "calculate": "floor(datum.i / 10)",
+   "as": "row"
+  },
+  {
+   "calculate": "datum.i < datum.k ? 'yes' : 'no'",
+   "as": "on"
+  }
+ ],
+ "facet": {
+  "column": {
+   "field": "label",
+   "type": "nominal",
+   "title": null,
+   "sort": [
+    "Overweight or obese",
+    "Short on fruit",
+    "Short on vegetables"
+   ],
+   "header": {
+    "labelFontSize": 13,
+    "labelFontWeight": "bold",
+    "labelOrient": "top"
+   }
+  }
+ },
+ "spec": {
+  "width": 230,
+  "height": 230,
+  "mark": {
+   "type": "square",
+   "size": 210,
+   "stroke": "white",
+   "strokeWidth": 1
+  },
+  "encoding": {
+   "x": {
+    "field": "col",
+    "type": "ordinal",
+    "axis": null
+   },
+   "y": {
+    "field": "row",
+    "type": "ordinal",
+    "axis": null,
+    "scale": {
+     "domain": [
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+     ]
     }
-  ],
-  "facet": {
-    "column": {
-      "field": "label",
-      "type": "nominal",
-      "title": null,
-      "sort": [
-        "Overweight or obese",
-        "Short on fruit",
-        "Short on vegetables"
-      ],
-      "header": {
-        "labelFontSize": 13,
-        "labelFontWeight": "bold",
-        "labelOrient": "top"
-      }
-    }
-  },
-  "spec": {
-    "width": 170,
-    "height": 170,
-    "mark": {
-      "type": "square",
-      "size": 120,
-      "stroke": "white",
-      "strokeWidth": 1
+   },
+   "color": {
+    "condition": [
+     {
+      "test": "datum.on === 'yes' && datum.m === 'overweight_obese_pct'",
+      "value": "#54278f"
+     },
+     {
+      "test": "datum.on === 'yes'",
+      "value": "#d94801"
+     }
+    ],
+    "value": "#e6e1d8"
+   },
+   "tooltip": [
+    {
+     "field": "label",
+     "title": "Measure"
     },
-    "encoding": {
-      "x": {
-        "field": "col",
-        "type": "ordinal",
-        "axis": null
-      },
-      "y": {
-        "field": "row",
-        "type": "ordinal",
-        "axis": null,
-        "scale": {
-          "domain": [
-            9,
-            8,
-            7,
-            6,
-            5,
-            4,
-            3,
-            2,
-            1,
-            0
-          ]
-        }
-      },
-      "color": {
-        "condition": [
-          {
-            "test": "datum.on === 'yes' && datum.m === 'overweight_obese_pct'",
-            "value": "#54278f"
-          },
-          {
-            "test": "datum.on === 'yes'",
-            "value": "#d94801"
-          }
-        ],
-        "value": "#e6e1d8"
-      },
-      "tooltip": [
-        {
-          "field": "label",
-          "title": "Measure"
-        },
-        {
-          "field": "pct",
-          "title": "Share of adults (%)"
-        }
-      ]
+    {
+     "field": "pct",
+     "title": "Share of adults (%)"
     }
-  },
-  "config": {
-    "view": {
-      "stroke": null
-    }
-  },
-  "spacing": 36
+   ]
+  }
+ },
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ },
+ "spacing": 50
 }

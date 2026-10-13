@@ -1,0 +1,577 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "title": {
+  "text": "Aldi and Woolworths stock different shelves",
+  "subtitle": "Each ribbon groups products: store, then food type, then star rating. Hover over a ribbon to highlight it.",
+  "anchor": "start"
+ },
+ "width": 860,
+ "height": 520,
+ "layer": [
+  {
+   "data": {
+    "url": "data/sankey_links.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "value": "number",
+      "x0": "number",
+      "x1": "number",
+      "sy0": "number",
+      "sy1": "number",
+      "ty0": "number",
+      "ty1": "number"
+     }
+    }
+   },
+   "params": [
+    {
+     "name": "hov",
+     "select": {
+      "type": "point",
+      "fields": [
+       "link_id"
+      ],
+      "on": "mouseover",
+      "clear": "mouseout"
+     }
+    }
+   ],
+   "transform": [
+    {
+     "calculate": "sequence(0, 1.05, 0.05)",
+     "as": "t"
+    },
+    {
+     "flatten": [
+      "t"
+     ]
+    },
+    {
+     "calculate": "datum.x0 + (datum.x1 - datum.x0) * datum.t",
+     "as": "xx"
+    },
+    {
+     "calculate": "datum.t * datum.t * (3 - 2 * datum.t)",
+     "as": "s"
+    },
+    {
+     "calculate": "datum.sy0 + (datum.ty0 - datum.sy0) * datum.s",
+     "as": "top"
+    },
+    {
+     "calculate": "datum.sy1 + (datum.ty1 - datum.sy1) * datum.s",
+     "as": "bot"
+    }
+   ],
+   "mark": {
+    "type": "area",
+    "interpolate": "linear"
+   },
+   "encoding": {
+    "x": {
+     "field": "xx",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "top",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "y2": {
+     "field": "bot"
+    },
+    "detail": {
+     "field": "link_id",
+     "type": "nominal"
+    },
+    "color": {
+     "field": "cat",
+     "type": "nominal",
+     "title": "Health Star Rating",
+     "scale": {
+      "domain": [
+       "Low (0.5-1.5)",
+       "Middle (2-3)",
+       "High (3.5-5)",
+       "Store"
+      ],
+      "range": [
+       "#c7e9c0",
+       "#74c476",
+       "#00682b",
+       "#d6d2c8"
+      ]
+     },
+     "legend": {
+      "values": [
+       "Low (0.5-1.5)",
+       "Middle (2-3)",
+       "High (3.5-5)"
+      ],
+      "orient": "bottom",
+      "direction": "horizontal"
+     }
+    },
+    "opacity": {
+     "condition": {
+      "param": "hov",
+      "empty": false,
+      "value": 0.95
+     },
+     "value": 0.55
+    },
+    "tooltip": [
+     {
+      "field": "src",
+      "title": "From"
+     },
+     {
+      "field": "tgt",
+      "title": "To"
+     },
+     {
+      "field": "value",
+      "title": "Products"
+     }
+    ]
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "mark": {
+    "type": "rect"
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "x2": {
+     "field": "x1"
+    },
+    "y": {
+     "field": "y0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "y2": {
+     "field": "y1"
+    },
+    "fill": {
+     "field": "fill",
+     "type": "nominal",
+     "scale": null,
+     "legend": null
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'left'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 17,
+    "fontWeight": "bold",
+    "color": "#1f2a2e",
+    "align": "right",
+    "dx": -10,
+    "dy": -8
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "title"
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'left'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 12,
+    "fontWeight": "normal",
+    "color": "#666",
+    "align": "right",
+    "dx": -10,
+    "dy": 10
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "sub"
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'mid'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 12,
+    "fontWeight": "bold",
+    "color": "white",
+    "align": "left",
+    "dx": 8,
+    "dy": 0,
+    "stroke": "white",
+    "strokeWidth": 4,
+    "strokeJoin": "round"
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "title"
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'mid'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 12,
+    "fontWeight": "bold",
+    "color": "#222",
+    "align": "left",
+    "dx": 8,
+    "dy": 0
+   },
+   "encoding": {
+    "x": {
+     "field": "x0",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "title"
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'right'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 15,
+    "fontWeight": "bold",
+    "color": "#1f2a2e",
+    "align": "left",
+    "dx": 10,
+    "dy": -8
+   },
+   "encoding": {
+    "x": {
+     "field": "x1",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "title"
+    }
+   }
+  },
+  {
+   "data": {
+    "url": "data/sankey_nodes.csv",
+    "format": {
+     "type": "csv",
+     "parse": {
+      "x0": "number",
+      "x1": "number",
+      "y0": "number",
+      "y1": "number"
+     }
+    }
+   },
+   "transform": [
+    {
+     "calculate": "(datum.y0 + datum.y1) / 2",
+     "as": "ym"
+    },
+    {
+     "filter": "datum.side === 'right'"
+    }
+   ],
+   "mark": {
+    "type": "text",
+    "fontSize": 12,
+    "fontWeight": "normal",
+    "color": "#666",
+    "align": "left",
+    "dx": 10,
+    "dy": 10
+   },
+   "encoding": {
+    "x": {
+     "field": "x1",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       -0.6,
+       2.75
+      ]
+     },
+     "axis": null
+    },
+    "y": {
+     "field": "ym",
+     "type": "quantitative",
+     "scale": {
+      "domain": [
+       0,
+       1
+      ],
+      "reverse": true
+     },
+     "axis": null
+    },
+    "text": {
+     "field": "sub"
+    }
+   }
+  }
+ ],
+ "config": {
+  "view": {
+   "stroke": null
+  }
+ }
+}

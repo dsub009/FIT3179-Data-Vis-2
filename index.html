@@ -28,7 +28,7 @@
       <div class="card"><div id="waffle"></div>
         <p class="source">Source: ABS National Health Survey 2022. National figures, rounded to the nearest whole number.</p></div>
 
-      <div class="story-row step">
+      <div class="story-row">
         <div>
           <span class="stat weight">65.8%</span>
           <h3>Two in three adults carry extra weight</h3>
@@ -83,10 +83,6 @@
       <p class="step">Sugar is easier to picture in teaspoons. A typical 100 g of snacks and sweets holds about 10. Pasta, rice and grains hold less than a quarter of one.</p>
       <div class="card"><div id="pictogram"></div>
         <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Sugars include natural sugars, such as those in milk and fruit.</p></div>
-
-      <p class="step">Sugar is not the only difference. Snacks lead on sugar and saturated fat. Vegetables and canned foods lead on salt. Meat leads on protein, and breakfast cereals lead on fibre.</p>
-      <div class="card"><div id="fingerprint"></div>
-        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Fibre shows 0.0 where the label gives none.</p></div>
     </section>
 
     <!-- 3. SIMILAR PRODUCTS -->
@@ -98,10 +94,14 @@
         <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Per 100 g.</p></div>
 
       <p class="step">Now compare stores. Aldi products average 3.5 stars in this sample. Woolworths averages 2.6. It looks like a clear win for Aldi.</p>
-      <p>But the gap is partly about what each store sells here. Aldi has many frozen, pasta and rice products. Woolworths has more snacks and drinks.</p>
+      <p>The ribbons show why. Aldi has no snacks, cereals or meat here. Only 3 of its 80 products earn a low rating. Woolworths has 47 low-rated products out of 142.</p>
+      <div class="card"><div id="sankey"></div>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Products sold at both stores count for each store. Food type "Other" is left out.</p></div>
+
+      <p class="step">So compare like with like instead.</p>
       <div class="card"><div id="slope"></div>
-        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Products sold at both stores count for each store. Coles products appear only alongside Woolworths in this dataset, so Coles is not compared.</p></div>
-      <p class="note">Compare like with like and the story changes. Aldi leads in bakery and sauces. Woolworths leads in vegetables and canned food.</p>
+        <p class="source">Source: OpenHSR (N'kam Suguem and Lafargue, 2025). Coles products appear only alongside Woolworths in this dataset, so Coles is not compared.</p></div>
+      <p class="note">Aldi leads in bakery and sauces. Woolworths leads in vegetables and canned food.</p>
     </section>
 
     <!-- 4. WHERE IT COMES FROM -->
@@ -161,10 +161,10 @@
     show('heatmap', 'charts/chart_heatmap_stars.vg.json');
     show('linked', 'charts/chart_linked_scatter.vg.json');
     show('pictogram', 'charts/chart_pictogram_sugar.vg.json');
-    show('fingerprint', 'charts/chart_nutrient_fingerprint.vg.json');
 
     // Section 3
     show('headtohead', 'charts/chart_headtohead.vg.json');
+    show('sankey', 'charts/chart_sankey_store.vg.json');
     show('slope', 'charts/chart_slope_retailer.vg.json');
 
     // Section 4: flow map with Play button (adds sources from largest to smallest)

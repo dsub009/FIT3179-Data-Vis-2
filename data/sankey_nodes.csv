@@ -1,0 +1,16 @@
+name,x0,x1,y0,y1,fill,label,side,title,sub
+Aldi,0,0.035,0.08,0.3755,#444444,Aldi (80),left,Aldi,80 products
+Woolworths,0,0.035,0.3955,0.92,#444444,Woolworths (142),left,Woolworths,142 products
+Vegetables & canned,1,1.035,0.0,0.0628,#e07aa0,Vegetables & canned,mid,Vegetables & canned,
+"Pasta, rice & grains",1,1.035,0.0828,0.1567,#e07aa0,"Pasta, rice & grains",mid,"Pasta, rice & grains",
+Frozen foods,1,1.035,0.1767,0.2764,#e07aa0,Frozen foods,mid,Frozen foods,
+Breakfast cereals,1,1.035,0.2964,0.3666,#e07aa0,Breakfast cereals,mid,Breakfast cereals,
+Meat,1,1.035,0.3866,0.4974,#e07aa0,Meat,mid,Meat,
+Sauces & other processed,1,1.035,0.5174,0.6614,#e07aa0,Sauces & other processed,mid,Sauces & other processed,
+Dairy & eggs,1,1.035,0.6814,0.7701,#e07aa0,Dairy & eggs,mid,Dairy & eggs,
+Drinks,1,1.035,0.7901,0.875,#e07aa0,Drinks,mid,Drinks,
+Bakery,1,1.035,0.895,0.9578,#e07aa0,Bakery,mid,Bakery,
+Snacks & sweets,1,1.035,0.9778,1.0,#e07aa0,Snacks & sweets,mid,Snacks & sweets,
+High,2,2.035,0.07,0.4689,#00682b,High (108),right,High rating,3.5-5 stars · 108 products
+Middle,2,2.035,0.4889,0.7253,#74c476,Middle (64),right,Middle rating,2-3 stars · 64 products
+Low,2,2.035,0.7453,0.93,#c7e9c0,Low (50),right,Low rating,0.5-1.5 stars · 50 products

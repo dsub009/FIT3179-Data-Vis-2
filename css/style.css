@@ -1,4 +1,9 @@
-
+/* ============================================================
+   What's really in the packet? · FIT3179 DV2
+   Colour system (one colour per variable, used everywhere):
+   purple = body weight · orange = diet · green = star rating
+   blue = trade/imports · pink = products and food types
+   ============================================================ */
 
 :root {
   --bg: #fffdf9;
@@ -26,7 +31,7 @@ body {
 
 /* ---------- Page frame ---------- */
 header, main, footer {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 28px;
 }
@@ -71,14 +76,14 @@ p { max-width: 52ch; margin: 0 0 1rem; }   /* about 9 words per line */
 
 /* ---------- Sections ---------- */
 section {
-  padding: 3.5rem 0;
+  padding: 2.5rem 0;
   border-top: 1px solid var(--line);
 }
 
 /* ---------- Text + chart rows ---------- */
 .story-row {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 40px;
   margin: 0 0 2.5rem;
   align-items: start;
@@ -88,7 +93,7 @@ section {
 .story-row p { line-height: 1.7; }
 
 /* flipped row: chart on the left, text on the right */
-.story-row.flip { grid-template-columns: 1fr 300px; }
+.story-row.flip { grid-template-columns: 1fr 280px; }
 .story-row.flip > div:first-child { order: 2; }
 .story-row.flip > div:last-child  { order: 1; }
 
@@ -112,7 +117,7 @@ section {
 .c-import { color: var(--trade);  font-weight: 600; }
 .c-stars  { color: var(--stars);  font-weight: 600; }
 
-/* ---------- Chart cards ---------- */
+/* ---------- Chart cards (charts centred inside) ---------- */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -120,9 +125,34 @@ section {
   padding: 1.2rem;
   overflow-x: auto;      /* wide charts scroll inside the card, never the page */
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: safe center;   /* centre, but never cut off the left edge */
 }
 
-.step { margin: 2.5rem 0 1rem; }
+.card > div[id] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: safe center;
+  width: 100%;
+}
+
+/* dropdown menus and sliders under a chart */
+.card .vega-bindings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2rem;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.card .source   { align-self: stretch; }
+.card .controls { align-self: flex-start; }
+
+.step { margin: 2rem 0 0.8rem; }
 
 .source {
   font-size: 0.8rem;
@@ -148,7 +178,7 @@ section {
 }
 .takeaways p { font-size: 0.95rem; }
 
-/* ---------- Buttons (for the Play button in step 3) ---------- */
+/* ---------- Play button ---------- */
 .controls { margin: 0.5rem 0 1rem; }
 
 button {
@@ -187,7 +217,7 @@ footer p  { max-width: 80ch; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-/* ---------- Small screens ---------- */
+/* ---------- Small screens (keep this block LAST) ---------- */
 @media (max-width: 900px) {
   .story-row,
   .story-row.flip,
@@ -197,10 +227,3 @@ footer p  { max-width: 80ch; }
   .story-row.flip > div:first-child,
   .story-row.flip > div:last-child { order: 0; }
 }
-/* make "width: container" charts fill their card */
-.vega-embed { width: 100%; display: flex; }
-.vega-embed details,
-.vega-embed details summary { position: relative; }
-header, main, footer { max-width: 1200px; }
-.story-row { grid-template-columns: 280px 1fr; }
-.story-row.flip { grid-template-columns: 1fr 280px; }

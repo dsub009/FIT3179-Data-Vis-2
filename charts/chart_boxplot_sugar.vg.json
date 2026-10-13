@@ -5,7 +5,7 @@
     "subtitle": "Sugar per 100 g, by food type. Box = middle half of products. Line = median.",
     "anchor": "start"
   },
-  "width": 520,
+  "width": 820,
   "height": 380,
   "data": {
     "url": "data/openhsr_clean.csv"
@@ -38,11 +38,14 @@
       "mark": {
         "type": "boxplot",
         "extent": "min-max",
-        "size": 20,
-        "color": "#7a7a7a",
+        "size": 14,
+        "color": "#e07aa0",
         "median": {
           "color": "black",
-          "size": 20
+          "size": 14
+        },
+        "rule": {
+          "color": "#666"
         }
       },
       "encoding": {

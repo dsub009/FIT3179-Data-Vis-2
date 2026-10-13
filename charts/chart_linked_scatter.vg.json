@@ -10,8 +10,8 @@
         "subtitle": "Drag a box on the chart. The bars below show what you selected.",
         "anchor": "start"
       },
-      "width": 520,
-      "height": 280,
+      "width": 820,
+      "height": 300,
       "layer": [
         {
           "params": [
@@ -136,8 +136,8 @@
         "text": "Selected products by food type",
         "anchor": "start"
       },
-      "width": 520,
-      "height": 200,
+      "width": 820,
+      "height": 220,
       "transform": [
         {
           "filter": {
@@ -147,7 +147,8 @@
       ],
       "mark": {
         "type": "bar",
-        "color": "#7a7a7a"
+        "color": "#e07aa0",
+        "size": 14
       },
       "encoding": {
         "y": {

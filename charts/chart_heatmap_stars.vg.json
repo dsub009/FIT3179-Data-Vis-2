@@ -5,7 +5,7 @@
     "subtitle": "Number of products at each Health Star Rating. Rows run from healthiest to least healthy on average.",
     "anchor": "start"
   },
-  "width": 520,
+  "width": 820,
   "height": 380,
   "data": {
     "url": "data/openhsr_clean.csv"
@@ -72,7 +72,11 @@
           "field": "n",
           "type": "quantitative",
           "scale": {
-            "scheme": "greys"
+            "range": [
+              "#fce4ec",
+              "#e07aa0",
+              "#8e1450"
+            ]
           },
           "legend": {
             "title": "Products"

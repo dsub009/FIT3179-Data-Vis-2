@@ -201,3 +201,6 @@ footer p  { max-width: 80ch; }
 .vega-embed { width: 100%; display: flex; }
 .vega-embed details,
 .vega-embed details summary { position: relative; }
+header, main, footer { max-width: 1200px; }
+.story-row { grid-template-columns: 280px 1fr; }
+.story-row.flip { grid-template-columns: 1fr 280px; }
